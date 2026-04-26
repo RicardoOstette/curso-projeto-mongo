@@ -1,8 +1,8 @@
 package com.ricardoostette.workshopmongo.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ private static final long serialVersionUID = 1L;
 
 	@Id
 	private String id;
-	private LocalDate date;
+	private Date date;
 	private String title;
 	private String body;
 	
@@ -29,7 +29,7 @@ private static final long serialVersionUID = 1L;
 	public Post() {
 	}
 
-	public Post(String id, LocalDate date, String title, String body, AuthorDTO author) {
+	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -46,11 +46,11 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

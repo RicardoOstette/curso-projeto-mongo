@@ -1,9 +1,8 @@
 package com.ricardoostette.workshopmongo.config;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,7 +27,8 @@ public class Instantiation implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy").withZone(ZoneId.of("GMT"));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		
 		userRepository.deleteAll();
 		postRepository.deleteAll();
@@ -39,12 +39,12 @@ public class Instantiation implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		Post post1 = new Post(null, LocalDate.parse("21/03/2018", fmt), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
-		Post post2 = new Post(null, LocalDate.parse("23/03/2018", fmt), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 		
-		CommentsDTO c1p1 = new CommentsDTO("Boa viagem mano!", LocalDate.parse("21/03/2018", fmt), new AuthorDTO(alex));
-		CommentsDTO c2p1 = new CommentsDTO("Aproveite!", LocalDate.parse("22/03/2018", fmt), new AuthorDTO(bob));
-		CommentsDTO c3p2 = new CommentsDTO("Tenha um ótimo dia!", LocalDate.parse("23/03/2018", fmt), new AuthorDTO(alex));
+		CommentsDTO c1p1 = new CommentsDTO("Boa viagem mano!", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+		CommentsDTO c2p1 = new CommentsDTO("Aproveite!", sdf.parse("22/03/2018"), new AuthorDTO(bob));
+		CommentsDTO c3p2 = new CommentsDTO("Tenha um ótimo dia!", sdf.parse("23/03/2018"), new AuthorDTO(alex));
 		
 		post1.getComments().addAll(Arrays.asList(c1p1, c2p1));
 		post2.getComments().add(c3p2);

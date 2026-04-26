@@ -1,20 +1,20 @@
 package com.ricardoostette.workshopmongo.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class CommentsDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String text;
-	private LocalDate date;
+	private Date date;
 	
 	private AuthorDTO author;
 	
 	public CommentsDTO() {
 	}
 
-	public CommentsDTO(String text, LocalDate date, AuthorDTO author) {
+	public CommentsDTO(String text, Date date, AuthorDTO author) {
 		super();
 		this.text = text;
 		this.date = date;
@@ -29,11 +29,11 @@ public class CommentsDTO implements Serializable{
 		this.text = text;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
