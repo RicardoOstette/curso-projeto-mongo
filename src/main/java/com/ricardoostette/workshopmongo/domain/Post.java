@@ -2,12 +2,15 @@ package com.ricardoostette.workshopmongo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.ricardoostette.workshopmongo.dto.AuthorDTO;
+import com.ricardoostette.workshopmongo.dto.CommentsDTO;
 
 @Document
 public class Post implements Serializable{
@@ -20,6 +23,8 @@ private static final long serialVersionUID = 1L;
 	private String body;
 	
 	private AuthorDTO author;
+	
+	private List<CommentsDTO> comments = new ArrayList<>();
 	
 	public Post() {
 	}
@@ -71,6 +76,14 @@ private static final long serialVersionUID = 1L;
 
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
+	}
+	
+	public List<CommentsDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentsDTO> comments) {
+		this.comments = comments;
 	}
 
 	@Override
